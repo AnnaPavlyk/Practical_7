@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <math.h>
+
+// Функція для обчислення відстані між двома точками
+double distance(double x1, double y1, double x2, double y2) {
+    return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
+}
+
+int main() {
+    double x1, y1, r1, x2, y2, r2;
+    double d;
+
+    printf("Координати центрів та радіуси кіл (x1 y1 r1 x2 y2 r2): ");
+    scanf("%lf %lf %lf %lf %lf %lf", &x1, &y1, &r1, &x2, &y2, &r2);
+
+    d = distance(x1, y1, x2, y2);    // Обчислення відстані між центрами кіл
+
+    // Визначення кількості точок перетину
+    if (d == 0 && r1 == r2) {
+        printf("-1\n"); // Безкінечно багато точок перетину
+    } else if (d > r1 + r2 || d < fabs(r1 - r2)) {
+        printf("0\n"); // Немає точок перетину
+    } else if (d == r1 + r2 || d == fabs(r1 - r2)) {
+        printf("1\n"); // Одна точка перетину
+    } else {
+        printf("2\n"); // Дві точки перетину
+    }
+
+    return 0;
+}
